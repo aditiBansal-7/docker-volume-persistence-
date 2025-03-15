@@ -1,14 +1,17 @@
-🚀 Docker Volume Persistence: Bind Mounts on Linux Container 🐳
-📌 Introduction
-This experiment demonstrates how to use Docker Bind Mounts with a Linux container to persist data beyond the container’s lifecycle. By mounting a local directory into a container, data remains accessible even after the container is removed.
+# 🚀 Docker Volume Persistence: Bind Mounts on Linux Container 🐳  
 
-🔧 Steps & Observations
-🏗 Step 1: Running a Container with a Bind Mount
-Run the following command:
+## 📌 Introduction  
+This experiment demonstrates how to use **Docker Bind Mounts** with a **Linux container** to persist data beyond the container’s lifecycle.  
+By mounting a local directory into a container, data remains accessible even after the container is removed.  
 
-sh
-Copy
-Edit
+---
+
+## 🔧 Steps & Observations  
+
+### 🏗 Step 1: Running a Container with a Bind Mount  
+Run the following command:  
+
+```sh
 docker run -dit --name alpine_with_bind_mount -v C:\Users\asus\docker_data:/data alpine:latest sh
 🔍 What Happened?
 Since alpine:latest was not found locally, Docker pulled it from the official repository.
@@ -27,13 +30,14 @@ The command executed a shell inside the running container.
 It created a file testfile.txt inside /data and wrote "Hello, Tarak!" into it.
 Since /data is a bind-mounted directory, the file was actually stored in C:\Users\asus\docker_data on the host system.
 ✅ Step 3: Verifying the File Exists
-To check the contents:
+To check the contents of the file inside the container:
 
 sh
 Copy
 Edit
 docker exec -it alpine_with_bind_mount sh -c "cat /data/testfile.txt"
 📌 Output:
+sh
 Copy
 Edit
 Hello, Tarak!
@@ -67,6 +71,7 @@ Copy
 Edit
 docker exec -it new_alpine sh -c "cat /data/testfile.txt"
 📌 Output:
+sh
 Copy
 Edit
 Hello, Tarak!
@@ -79,4 +84,3 @@ Hello, Tarak!
 ✅ Useful for sharing files between containers and persisting data beyond the container’s lifecycle.
 
 📂 Perfect for containerized applications that need persistent storage! 🚀
-
